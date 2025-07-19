@@ -1,0 +1,98 @@
+/* -------------------- RESET + BASE -------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0C1C2E;
+    color: #FFFFFF;
+    line-height: 1.6;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  /* -------------------- LOGO -------------------- */
+  
+  .site-header {
+    text-align: center;
+    padding: 30px 0 0;
+  }
+  
+  .logo-container img {
+    height: 60px;
+    border-radius: 12px;
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+  }
+  
+  /* -------------------- MAIN CONTENT -------------------- */
+  
+  .role-selection h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #FFC300;
+  }
+  
+  .role-selection p {
+    color: #B0BCCB;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+  }
+  
+  .roles {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .role-card {
+    background-color: #132435;
+    border: 2px solid transparent;
+    padding: 30px 20px;
+    width: 280px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  .role-card:hover {
+    transform: translateY(-6px);
+    border-color: #FFC300;
+    box-shadow: 0 0 20px rgba(255, 195, 0, 0.4);
+  }
+  
+  .role-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .role-card p {
+    color: #B0BCCB;
+    font-size: 1rem;
+  }
+  
+  /* -------------------- RESPONSIVE -------------------- */
+  
+  @media (max-width: 768px) {
+    .role-card {
+      width: 100%;
+      max-width: 340px;
+    }
+  
+    .role-selection h1 {
+      font-size: 2rem;
+    }
+  }
+  

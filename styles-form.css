@@ -1,0 +1,110 @@
+/* -------------------- RESET + BASE -------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0C1C2E;
+  color: #FFFFFF;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+/* -------------------- LOGO -------------------- */
+
+.site-header {
+  text-align: center;
+  padding: 30px 0 0;
+}
+
+.logo-container img {
+  height: 60px;
+  border-radius: 12px;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+}
+
+/* -------------------- FORM -------------------- */
+
+.form-section h1 {
+  color: #FFC300;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-section p {
+  color: #B0BCCB;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #FFFFFF;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #B0BCCB;
+  background-color: #132435;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #888;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.btn-submit {
+  background: #FFC300;
+  color: #0C1C2E;
+  font-weight: bold;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+  background: #ffd84f;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+
+@media (max-width: 768px) {
+  .form-section h1 {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 40px 20px;
+  }
+}

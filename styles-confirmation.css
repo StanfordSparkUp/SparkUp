@@ -1,0 +1,81 @@
+/* -------------------- BASE -------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0C1C2E;
+    color: #FFFFFF;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 80px 20px;
+  }
+  
+  /* -------------------- LOGO -------------------- */
+  
+  .site-header {
+    text-align: center;
+    padding: 30px 0 0;
+  }
+  
+  .logo-container img {
+    height: 60px;
+    border-radius: 12px;
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+  }
+  
+  .logo-container a {
+    cursor: pointer;
+  }
+  
+  /* -------------------- CONFIRMATION -------------------- */
+  
+  .confirmation h1 {
+    color: #FFC300;
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+  }
+  
+  .confirmation p {
+    color: #B0BCCB;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+  }
+  
+  .btn-home {
+    background: #FFC300;
+    color: #0C1C2E;
+    font-weight: bold;
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-home:hover {
+    background: #ffd84f;
+  }
+  
+  /* -------------------- RESPONSIVE -------------------- */
+  
+  @media (max-width: 768px) {
+    .confirmation h1 {
+      font-size: 2rem;
+    }
+  
+    .confirmation p {
+      font-size: 1rem;
+    }
+  }
+  

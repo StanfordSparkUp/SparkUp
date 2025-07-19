@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Captain — SparkUp</title>
+  <link rel="stylesheet" href="styles-form.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo-container">
+        <a href="index.html">
+            <img src="/media/sparkup_logo.png" alt="SparkUp logo" />
+          </a>
+    </div>
+  </header>
+
+  <main class="form-section">
+    <div class="container">
+      <h1>Let's spark your idea</h1>
+      <p>Tell us who you are and what you're building. We'll help you find the right teammates.</p>
+
+      <form id="spark-form">
+        <label for="name">Your full name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">University email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="interests">What do you love doing outside of work?</label>
+        <textarea id="interests" name="interests" rows="3"></textarea>
+
+        <label for="idea">Tell us about your idea</label>
+        <textarea id="idea" name="idea" rows="4" required></textarea>
+
+        <label for="team">What kind of people are you looking for?</label>
+        <textarea id="team" name="team" rows="3" required></textarea>
+
+        <button type="submit" class="btn-submit">Continue</button>
+      </form>
+    </div>
+  </main>
+  <script>
+    const form = document.getElementById('spark-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Evita envío real
+      window.location.href = "confirmation.html"; // Redirige a la Página 5
+    });
+  </script>
+</body>
+</html>
