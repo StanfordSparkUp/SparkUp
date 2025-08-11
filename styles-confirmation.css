@@ -66,6 +66,188 @@
   .btn-home:hover {
     background: #ffd84f;
   }
+
+  /* -------------------- ANALYSIS RESULTS -------------------- */
+
+  .analysis-section {
+    margin: 40px 0;
+  }
+
+  .loading {
+    background: rgba(255, 195, 0, 0.1);
+    border: 1px solid #FFC300;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .loading p {
+    color: #FFC300;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .matches-section {
+    text-align: left;
+    margin: 40px 0;
+  }
+
+  .matches-section h2 {
+    color: #FFC300;
+    font-size: 1.8rem;
+    margin: 30px 0 15px 0;
+    text-align: center;
+  }
+
+  .profile-card {
+    background: rgba(176, 188, 203, 0.1);
+    border: 1px solid rgba(176, 188, 203, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .profile-card h3 {
+    color: #FFC300;
+    margin-bottom: 15px;
+  }
+
+  .profile-card p {
+    margin: 8px 0;
+    color: #B0BCCB;
+  }
+
+  .profile-description {
+    background: rgba(255, 195, 0, 0.05);
+    border-left: 3px solid #FFC300;
+    padding: 15px;
+    margin: 15px 0;
+    font-style: italic;
+  }
+
+  .matches-list {
+    display: grid;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  .match-card {
+    background: rgba(176, 188, 203, 0.08);
+    border: 1px solid rgba(176, 188, 203, 0.2);
+    border-radius: 6px;
+    padding: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .match-card:hover {
+    background: rgba(255, 195, 0, 0.1);
+    border-color: #FFC300;
+  }
+
+  .match-card h4 {
+    color: #FFC300;
+    margin-bottom: 5px;
+  }
+
+  .match-card p {
+    color: #B0BCCB;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .recommendations {
+    margin: 20px 0;
+  }
+
+  .recommendation {
+    background: rgba(255, 195, 0, 0.05);
+    border: 1px solid rgba(255, 195, 0, 0.3);
+    border-radius: 6px;
+    padding: 15px;
+  }
+
+  .recommendation p {
+    color: #B0BCCB;
+    margin: 0;
+  }
+
+  .no-matches {
+    background: rgba(255, 195, 0, 0.1);
+    border: 1px solid rgba(255, 195, 0, 0.3);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .no-matches p {
+    margin: 10px 0;
+    color: #B0BCCB;
+  }
+
+  .personality-insights,
+  .project-suggestions {
+    background: rgba(176, 188, 203, 0.05);
+    border: 1px solid rgba(176, 188, 203, 0.2);
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  .personality-insights h3,
+  .project-suggestions h3 {
+    color: #FFC300;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+  }
+
+  .personality-insights p,
+  .project-suggestions p {
+    color: #B0BCCB;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* -------------------- DEBUG PANEL -------------------- */
+
+  .debug-panel {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 40px 0;
+    text-align: left;
+  }
+
+  .debug-panel h3 {
+    color: #FFC300;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  .debug-panel pre {
+    background: rgba(0, 0, 0, 0.5);
+    color: #B0BCCB;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .debug-panel button {
+    background: #333;
+    color: #FFC300;
+    border: 1px solid #555;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .debug-panel button:hover {
+    background: #444;
+  }
   
   /* -------------------- RESPONSIVE -------------------- */
   

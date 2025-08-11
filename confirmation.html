@@ -19,10 +19,145 @@
   <main class="confirmation">
     <div class="container">
       <h1>You're sparked ⚡</h1>
-      <p>Thanks for sharing your story. We’ll be in touch soon with people and projects that match your vibe.</p>
+      <p>Thanks for sharing your story. We've analyzed your profile and found some exciting matches!</p>
+      
+      <div id="analysis-results" class="analysis-section">
+        <div class="loading">
+          <p>🤖 Analyzing your profile...</p>
+        </div>
+      </div>
+      
+      <div id="matches-section" class="matches-section" style="display: none;">
+        <h2>Your Profile</h2>
+        <div id="user-profile" class="profile-card"></div>
+        
+        <h2>Potential Matches</h2>
+        <div id="matches-list" class="matches-list"></div>
+        
+        <h2>Recommendations</h2>
+        <div id="recommendations" class="recommendations"></div>
+      </div>
+      
       <a href="index.html" class="btn-home">Back to home</a>
+      
+      <!-- Debug panel para ver datos -->
+      <div id="debug-panel" class="debug-panel" style="display: none;">
+        <h3>Debug - Datos guardados:</h3>
+        <pre id="debug-data"></pre>
+        <button onclick="toggleDebug()">Toggle Debug</button>
+      </div>
     </div>
   </main>
+  
+  <script>
+    // Mostrar resultados del análisis al cargar la página
+    window.addEventListener('load', function() {
+      displayAnalysisResults();
+      
+      // Agregar botón de debug
+      const debugBtn = document.createElement('button');
+      debugBtn.textContent = 'Debug Data';
+      debugBtn.style.position = 'fixed';
+      debugBtn.style.bottom = '10px';
+      debugBtn.style.right = '10px';
+      debugBtn.style.fontSize = '12px';
+      debugBtn.onclick = toggleDebug;
+      document.body.appendChild(debugBtn);
+    });
+    
+    function displayAnalysisResults() {
+      const userData = JSON.parse(localStorage.getItem('sparkup_user_data') || '{}');
+      const llmResponse = JSON.parse(localStorage.getItem('sparkup_llm_response') || '{}');
+      const allUsers = JSON.parse(localStorage.getItem('sparkup_all_users') || '[]');
+      
+      // Simular delay de procesamiento
+      setTimeout(() => {
+        document.querySelector('.loading').style.display = 'none';
+        document.getElementById('matches-section').style.display = 'block';
+        
+        // Mostrar perfil del usuario
+        document.getElementById('user-profile').innerHTML = `
+          <h3>¡Hola ${userData.name}! 👋</h3>
+          <p><strong>Rol:</strong> ${userData.role === 'captain' ? '🔥 Captain' : '🌊 Sailor'}</p>
+          <p><strong>Compatibilidad Score:</strong> ${llmResponse.compatibility_score || 'N/A'}/10</p>
+          <div class="profile-description">
+            ${llmResponse.user_profile || 'Perfil generado por IA no disponible'}
+          </div>
+        `;
+        
+        // Mostrar matches
+        if (llmResponse.matches && llmResponse.matches.length > 0) {
+          document.getElementById('matches-list').innerHTML = 
+            llmResponse.matches.map(match => {
+              // Si match es un objeto con detalles, mostrarlo; si no, formato simple
+              if (typeof match === 'object' && match.name) {
+                return `
+                  <div class="match-card">
+                    <h4>${match.name}</h4>
+                    <p><strong>¿Por qué son compatibles?</strong> ${match.reason}</p>
+                    <p><strong>Potencial de colaboración:</strong> ${match.collaboration_potential}</p>
+                  </div>
+                `;
+              } else {
+                return `
+                  <div class="match-card">
+                    <h4>${match}</h4>
+                    <p>Potencial colaborador detectado por IA</p>
+                  </div>
+                `;
+              }
+            }).join('');
+        } else {
+          document.getElementById('matches-list').innerHTML = `
+            <div class="no-matches">
+              <p>🚀 Eres pionero en SparkUp! Serás el primero en recibir matches cuando más personas se unan.</p>
+              <p>Mientras tanto, comparte SparkUp con amigos que podrían ser tu equipo ideal.</p>
+            </div>
+          `;
+        }
+        
+        // Mostrar recomendaciones
+        const recommendations = Array.isArray(llmResponse.recommendations) ? 
+          llmResponse.recommendations : 
+          [llmResponse.recommendations || 'No hay recomendaciones disponibles'];
+        
+        document.getElementById('recommendations').innerHTML = `
+          ${recommendations.map(rec => `
+            <div class="recommendation">
+              <p>💡 ${rec}</p>
+            </div>
+          `).join('')}
+          
+          ${llmResponse.personality_insights ? `
+            <div class="personality-insights">
+              <h3>🧠 Análisis de Personalidad</h3>
+              <p>${llmResponse.personality_insights}</p>
+            </div>
+          ` : ''}
+          
+          ${llmResponse.project_suggestions ? `
+            <div class="project-suggestions">
+              <h3>🎯 Sugerencias de Proyecto</h3>
+              <p>${llmResponse.project_suggestions}</p>
+            </div>
+          ` : ''}
+        `;
+        
+        // Actualizar debug panel
+        document.getElementById('debug-data').textContent = JSON.stringify({
+          userData,
+          llmResponse,
+          totalUsers: allUsers.length
+        }, null, 2);
+        
+      }, 2000);
+    }
+    
+    function toggleDebug() {
+      const debugPanel = document.getElementById('debug-panel');
+      debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
 
 </body>
 </html>

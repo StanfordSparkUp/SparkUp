@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sailor — SparkUp</title>
   <link rel="stylesheet" href="styles-form.css" />
+  <script src="llm-integration.js"></script>
 </head>
 <body>
 
@@ -43,10 +44,62 @@
   </main>
   <script>
     const form = document.getElementById('spark-form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); // Evita envío real
-      window.location.href = "confirmation.html"; // Redirige a la Página 5
+    
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Recopilar datos del formulario
+      const formData = {
+        role: 'sailor',
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        interests: document.getElementById('interests').value,
+        motivation: document.getElementById('motivation').value,
+        people: document.getElementById('people').value,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Guardar en localStorage
+      saveUserData(formData);
+      
+      // Mostrar loading
+      const submitBtn = document.querySelector('.btn-submit');
+      submitBtn.textContent = 'Processing...';
+      submitBtn.disabled = true;
+      
+      try {
+        // Enviar a LLM para procesamiento (usando la nueva integración)
+        const llmResponse = await processWithRealLLM(formData);
+        console.log('LLM Response:', llmResponse);
+        
+        // Guardar respuesta del LLM
+        localStorage.setItem('sparkup_llm_response', JSON.stringify(llmResponse));
+        
+        // Redirigir a confirmación
+        window.location.href = "confirmation.html";
+      } catch (error) {
+        console.error('Error processing with LLM:', error);
+        
+        // Restaurar botón y mostrar error
+        submitBtn.textContent = 'Continue';
+        submitBtn.disabled = false;
+        alert('Hubo un error procesando tu información. Por favor intenta de nuevo.');
+      }
     });
+    
+    function saveUserData(data) {
+      // Guardar datos individuales
+      localStorage.setItem('sparkup_user_data', JSON.stringify(data));
+      
+      // Agregar a lista de todos los usuarios (para el LLM)
+      let allUsers = JSON.parse(localStorage.getItem('sparkup_all_users') || '[]');
+      allUsers.push(data);
+      localStorage.setItem('sparkup_all_users', JSON.stringify(allUsers));
+      
+      console.log('Datos guardados:', data);
+    }
+    
+    // Esta función ya no es necesaria, se usa processWithRealLLM del archivo llm-integration.js
   </script>
 </body>
 </html>
