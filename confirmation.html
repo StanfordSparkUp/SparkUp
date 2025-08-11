@@ -70,18 +70,18 @@
       const llmResponse = JSON.parse(localStorage.getItem('sparkup_llm_response') || '{}');
       const allUsers = JSON.parse(localStorage.getItem('sparkup_all_users') || '[]');
       
-      // Simular delay de procesamiento
+      // Simulate processing delay
       setTimeout(() => {
         document.querySelector('.loading').style.display = 'none';
         document.getElementById('matches-section').style.display = 'block';
         
         // Mostrar perfil del usuario
         document.getElementById('user-profile').innerHTML = `
-          <h3>¡Hola ${userData.name}! 👋</h3>
-          <p><strong>Rol:</strong> ${userData.role === 'captain' ? '🔥 Captain' : '🌊 Sailor'}</p>
-          <p><strong>Compatibilidad Score:</strong> ${llmResponse.compatibility_score || 'N/A'}/10</p>
+          <h3>Hello ${userData.name}! 👋</h3>
+          <p><strong>Role:</strong> ${userData.role === 'captain' ? '🔥 Captain' : '🌊 Sailor'}</p>
+          <p><strong>Compatibility Score:</strong> ${llmResponse.compatibility_score || 'N/A'}/10</p>
           <div class="profile-description">
-            ${llmResponse.user_profile || 'Perfil generado por IA no disponible'}
+            ${llmResponse.user_profile || 'AI-generated profile not available'}
           </div>
         `;
         
@@ -94,15 +94,15 @@
                 return `
                   <div class="match-card">
                     <h4>${match.name}</h4>
-                    <p><strong>¿Por qué son compatibles?</strong> ${match.reason}</p>
-                    <p><strong>Potencial de colaboración:</strong> ${match.collaboration_potential}</p>
+                    <p><strong>Why are you compatible?</strong> ${match.reason}</p>
+                    <p><strong>Collaboration potential:</strong> ${match.collaboration_potential}</p>
                   </div>
                 `;
               } else {
                 return `
                   <div class="match-card">
                     <h4>${match}</h4>
-                    <p>Potencial colaborador detectado por IA</p>
+                    <p>Potential collaborator detected by AI</p>
                   </div>
                 `;
               }
@@ -110,8 +110,8 @@
         } else {
           document.getElementById('matches-list').innerHTML = `
             <div class="no-matches">
-              <p>🚀 Eres pionero en SparkUp! Serás el primero en recibir matches cuando más personas se unan.</p>
-              <p>Mientras tanto, comparte SparkUp con amigos que podrían ser tu equipo ideal.</p>
+              <p>🚀 You're a SparkUp pioneer! You'll be the first to receive matches when more people join.</p>
+              <p>Meanwhile, share SparkUp with friends who could be your ideal team.</p>
             </div>
           `;
         }
@@ -119,7 +119,7 @@
         // Mostrar recomendaciones
         const recommendations = Array.isArray(llmResponse.recommendations) ? 
           llmResponse.recommendations : 
-          [llmResponse.recommendations || 'No hay recomendaciones disponibles'];
+          [llmResponse.recommendations || 'No recommendations available'];
         
         document.getElementById('recommendations').innerHTML = `
           ${recommendations.map(rec => `
@@ -130,14 +130,14 @@
           
           ${llmResponse.personality_insights ? `
             <div class="personality-insights">
-              <h3>🧠 Análisis de Personalidad</h3>
+              <h3>🧠 Personality Analysis</h3>
               <p>${llmResponse.personality_insights}</p>
             </div>
           ` : ''}
           
           ${llmResponse.project_suggestions ? `
             <div class="project-suggestions">
-              <h3>🎯 Sugerencias de Proyecto</h3>
+              <h3>🎯 Project Suggestions</h3>
               <p>${llmResponse.project_suggestions}</p>
             </div>
           ` : ''}

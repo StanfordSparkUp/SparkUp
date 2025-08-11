@@ -241,31 +241,56 @@ RESPONDE EN FORMATO JSON VÁLIDO:
   }
 }
 
-// Función de utilidad para usar en los formularios
+// Función de utilidad para usar en los formularios - MODIFICADA PARA MVP
 async function processWithRealLLM(userData) {
-  // Configuración - En producción deberías obtener esto de variables de entorno
-  const API_KEY = 'tu-api-key-aqui'; // ⚠️ REEMPLAZAR CON TU API KEY
-  const PROVIDER = 'openai'; // 'openai', 'claude', 'local', etc.
+  // Para el MVP, siempre devolver matches fijos en lugar de usar LLM real
+  console.log('🎬 MVP Mode: Using fixed matches for demo video');
   
-  // Si no hay API key, usar simulación
-  if (!API_KEY || API_KEY === 'tu-api-key-aqui') {
-    console.log('⚠️ No API key configured, using mock response');
-    const llm = new LLMIntegration('mock', 'mock');
-    const allUsers = JSON.parse(localStorage.getItem('sparkup_all_users') || '[]');
-    return llm.generateFallbackResponse(userData, allUsers);
-  }
+  // Matches fijos para el MVP (en inglés)
+  const fixedMatches = [
+    {
+      name: "Maria Gonzalez",
+      reason: "Shares your passion for social impact projects and technology. Her experience in digital product development perfectly complements your focus on collaboration and networking.",
+      collaboration_potential: "You could create a platform that connects students with volunteer opportunities and social projects, combining technology with real impact."
+    },
+    {
+      name: "Carlos Rodriguez",
+      reason: "His fintech background and interest in sports create perfect synergy. Both of you seek projects that combine technological innovation with practical applications in the real world.",
+      collaboration_potential: "Ideal for developing a university sports team management app with payment integration and analytics."
+    },
+    {
+      name: "Ana Silva",
+      reason: "Her UX/UI expertise and curiosity for new technologies make her the perfect collaborator. She shares your vision of creating solutions that truly impact people's lives.",
+      collaboration_potential: "Excellent for leading user experience design in social impact and educational projects."
+    }
+  ];
 
-  try {
-    const llm = new LLMIntegration(API_KEY, PROVIDER);
-    const allUsers = JSON.parse(localStorage.getItem('sparkup_all_users') || '[]');
-    
-    return await llm.processUserData(userData, allUsers);
-  } catch (error) {
-    console.error('Error with real LLM, falling back to mock:', error);
-    const llm = new LLMIntegration('mock', 'mock');
-    const allUsers = JSON.parse(localStorage.getItem('sparkup_all_users') || '[]');
-    return llm.generateFallbackResponse(userData, allUsers);
-  }
+  // Perfil personalizado basado en los datos del usuario (en inglés)
+  const userProfile = `${userData.name} is an exceptional talent with a unique combination of intellectual curiosity and passion for real impact. Your focus on technology projects with social purpose, combined with your networking and collaboration experience, makes you an invaluable asset to any innovative team. Your ability to connect with people from different backgrounds and your clear vision about the types of projects you want to create together demonstrates natural leadership and exceptional collaborative mindset.`;
+
+  const personalityInsights = "Personality Analysis: Collaborative leader profile with strong results orientation. Demonstrates genuine curiosity to learn from others and natural ability to identify synergy opportunities. Your clear and direct communication suggests team work experience and a pragmatic approach to problem solving.";
+
+  const recommendations = [
+    "Consider adding specific examples of previous collaborative projects to strengthen your profile",
+    "Mention specific technologies or tools you're comfortable working with",
+    "Include information about your time availability and communication preferences"
+  ];
+
+  const projectSuggestions = "Based on your profile, I recommend looking for projects that combine: 1) Digital platform development with social impact, 2) Mobile applications to connect university communities, 3) Collaboration and networking tools for students. Your technology background and collaborative approach position you perfectly to lead or significantly contribute to these types of projects.";
+
+  const mvpResponse = {
+    compatibility_score: 9,
+    matches: fixedMatches,
+    user_profile: userProfile,
+    personality_insights: personalityInsights,
+    recommendations: recommendations,
+    project_suggestions: projectSuggestions
+  };
+
+  // Guardar respuesta en localStorage
+  localStorage.setItem('sparkup_llm_response', JSON.stringify(mvpResponse));
+  
+  return mvpResponse;
 }
 
 // Exportar para uso en otros archivos
